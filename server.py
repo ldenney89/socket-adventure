@@ -149,9 +149,11 @@ class Server(object):
         """
 
         # TODO: YOUR CODE HERE
-        if (self.room == 1 and argument == "east") or\
-        (self.room == 3 and argument == "south") or \
-        (self.room == 2 and argument == "west"):
+        if self.room == 1 and argument == "east":
+            self.room = 0
+        if self.room == 3 and argument == "south":
+            self.room = 0
+        if self.room == 2 and argument == "west":
             self.room = 0
 
         if self.room == 0 and argument == "north":
@@ -213,17 +215,14 @@ class Server(object):
         # TODO: YOUR CODE HERE
         if self.input_buffer == "quit":
             self.quit(None)
+        else:
 
-        lst_buffer = self.input_buffer.split(" ", 1)
-        command = lst_buffer[0]
-        argument = lst_buffer[1]
-        try:
+            lst_buffer = self.input_buffer.split(" ", 1)
+            command = lst_buffer[0]
+            argument = lst_buffer[1]
             {'quit': self.quit,
             'move': self.move,
             'say': self.say}[command](argument)
-
-
-
 
     def push_output(self):
         """
